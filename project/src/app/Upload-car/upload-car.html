@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="upload-card">
+    <h1>Upload a New Vehicle</h1>
+    
+    <form (submit)="onSubmit($event)">
+      <div class="form-group">
+        <label for="carName">Vehicle Name / Model</label>
+        <input type="text" id="carName" placeholder="e.g., BMW M3 GTR (E46)" required>
+      </div>
+
+      <div class="form-group">
+        <label for="carPrice">Price ($)</label>
+        <input type="number" id="carPrice" placeholder="e.g., 45000" required>
+      </div>
+
+      <div class="form-group">
+        <label for="carImage">Image URL or File</label>
+        <input type="text" id="carImage" placeholder="Paste image URL here" required>
+      </div>
+
+      <div class="form-group">
+        <label for="carDescription">Description & Specs</label>
+        <textarea id="carDescription" rows="4" placeholder="Enter vehicle details, horsepower, year..." required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Publish Listing</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<nav class="navbar" [class.dark-mode]="isDarkMode">
+    <div class="navbar-brand">
+      <a routerLink="/home" routerLinkActive="active" class="navbar-brand" style="text-decoration: none; display: flex; align-items: center; gap: 1rem;">
+        <img src="logo.png" alt="logo" style="width: 5rem; height: auto;">
+        <h2>Buy Vroom Vroom Machine</h2>
+      </a>
+    </div>
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a routerLink="/home" routerLinkActive="active" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/menu" routerLinkActive="active" class="nav-link">Listing</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/cart" routerLinkActive="active" class="nav-link">Cart</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/upload-car" routerLinkActive="active" class="nav-link">Upload Cars</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/about-us" routerLinkActive="active" class="nav-link">About Us</a>
+        </li>
+      <li class="nav-item" *ngIf="!loggedIn">
+        <a routerLink="/sign-in" routerLinkActive="active" class="nav-link">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="!loggedIn">
+        <a routerLink="/authentication" routerLinkActive="active" class="nav-link">sign-up</a>
+      </li>
+      <li class="nav-item" *ngIf="loggedIn">
+        <a class="nav-link" style="cursor: pointer" (click)="logout()">Logout</a>
+      </li>
+      
+      <!-- Dark Mode Toggle Button Item -->
+      <li class="nav-item">
+        <button class="nav-link dark-mode-btn" (click)="toggleDarkMode()">
+          {{ isDarkMode ? '☀️ Light' : '🌙 Dark' }}
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Clean, reliable pop-up graphic like your Batman mode -->
+  <img *ngIf="tractorMode" src="tractor.png" class="tractor-easter-egg" alt="Tractor Easter Egg">
+
+<router-outlet></router-outlet>
+
+<audio id="tractor-audio" src="tractor-sound.mp3" preload="auto"></audio>

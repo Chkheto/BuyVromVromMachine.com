@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==========================================
+   GLOBAL DARK THEME (Applies across all pages hopefully)
+   ========================================== */
+body.dark-theme {
+  background-color: #121212 !important;
+  color: #e0e0e0 !important;
+
+  /* 1. Global Containers & Sections across all pages */
+  .container,
+  .featured-section,
+  .about-section,
+  .menu-container {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+  }
+
+  /* 2. All Cards, Forms, & Boxes (Sign-in, About Us, Listing Cards, etc.) */
+  .form-signin,
+  .about-us-container,
+  .dish,
+  .dish-card,
+  .car-detail-card,
+  .upload-card,
+  .cart-card,
+  .auth-card {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8) !important;
+    border: 1px solid #2a2a2a !important;
+  }
+
+  /* 3. Global Headings */
+  h1, h2, h3, h4, h5, h6,
+  .menu-title {
+    color: #ffffff !important;
+  }
+
+  /* 4. Global Text, Labels, & Paragraphs */
+  p, span, label, 
+  .form-label, 
+  .form-check-label {
+    color: #cccccc !important;
+  }
+
+  /* 5. Inputs, Selects, & Textareas */
+  input, 
+  textarea, 
+  select,
+  .form-control {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+    border-color: #444 !important;
+
+    &::placeholder {
+      color: #888 !important;
+    }
+  }
+
+  /* 6. Buttons */
+  .btn-primary {
+    background: #252525 !important;
+    color: #ffffff !important;
+    border-color: #555 !important;
+  }
+}
