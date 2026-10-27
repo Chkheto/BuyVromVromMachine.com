@@ -1,0 +1,104 @@
+<div class="container d-flex align-items-center py-4">
+  <main class="form-signin w-100 m-auto">
+    
+    <!-- 1. REGISTRATION FORM (Hidden when isVerifying becomes true) -->
+    <form [formGroup]="registerForm" *ngIf="!isVerifying">
+      <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+          formControlName="email"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="form-floating">
+        <input formControlName="firstName" type="text" class="form-control" id="floatingFirstName" placeholder="First Name" />
+        <label for="floatingFirstName">First Name</label>
+      </div>
+      <div class="form-floating">
+        <input formControlName="lastName" type="text" class="form-control" id="floatingLastName" placeholder="Last Name" />
+        <label for="floatingLastName">Last Name</label>
+      </div>
+      <div class="form-floating">
+        <input formControlName="age" type="number" class="form-control" id="floatingAge" placeholder="Age" />
+        <label for="floatingAge">Age</label>
+      </div>
+      <div class="form-floating">
+        <input formControlName="address" type="text" class="form-control" id="floatingAddress" placeholder="Address" />
+        <label for="floatingAddress">Address</label>
+      </div>
+      <div class="form-floating">
+        <input formControlName="phone" type="text" class="form-control" id="floatingPhone" placeholder="Phone" />
+        <label for="floatingPhone">Phone</label>
+      </div>
+      <div class="gender-section my-3">
+        <div class="gender-options">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="gender" value="MALE" id="male" />
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="gender" value="FEMALE" id="female" />
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-check text-start my-3">
+        <input class="form-check-input" type="checkbox" value="remember-me" id="checkDefault" />
+        <label class="form-check-label" for="checkDefault"> Remember me </label>
+      </div>
+      <div class="form-check my-3 d-flex align-items-center gap-2">
+  <input class="form-check-input mt-0" type="checkbox" id="registerIsSeller" formControlName="isSeller" style="width: 20px; height: 20px; cursor: pointer;">
+  <label class="form-check-label fw-semibold text-secondary mb-0" for="registerIsSeller" style="cursor: pointer;">
+    Register as a Seller (Allow vehicle uploads)
+  </label>
+</div>
+      <button
+        class="btn btn-primary w-100 py-2"
+        type="button"
+        (click)="register()" [disabled]="registerForm.invalid"
+      >Sign Up</button>
+      <p class="mt-5 mb-3 text-body-secondary">© 200–2060</p>
+    </form>
+
+    <!-- 2. VERIFICATION CODE SCREEN (Appears automatically after successful registration) -->
+    <div *ngIf="isVerifying">
+      <form [formGroup]="verifyForm">
+        <h1 class="h3 mb-3 fw-normal">Verify Your Account</h1>
+        <p class="text-muted mb-4">Enter the 6-digit code sent to <strong>{{ registeredEmail }}</strong></p>
+
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+        <div *ngIf="successMessage" class="alert alert-success" role="alert">{{ successMessage }}</div>
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control text-center fs-3 tracking-wide"
+            id="floatingVerifyCode"
+            placeholder="123456"
+            maxlength="6"
+            formControlName="code"
+          />
+          <label for="floatingVerifyCode">Verification Code</label>
+        </div>
+
+        <button
+          class="btn btn-success w-100 py-2"
+          type="button"
+          (click)="verifyCode()" [disabled]="verifyForm.invalid"
+        >Verify Code</button>
+      </form>
+    </div>
+
+  </main>
+</div>
