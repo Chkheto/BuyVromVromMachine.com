@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="menu-container">
+    <h2 class="menu-title">Available Vehicles</h2>
+
+    <div *ngIf="successMessage" class="alert alert-success" role="alert">
+      {{ successMessage }}
+    </div>
+
+    <!-- Filters Section -->
+    <div class="filters card shadow-sm p-3">
+      <h5 class="mb-3 w-150">Filter Vehicles</h5>
+      <div class="row g-3 w-100">
+        <div class="col-md-4">
+          <label class="form-label">Brand / Model</label>
+          <input type="text" class="form-control" [(ngModel)]="brandFilter" (input)="filterCars()" placeholder="e.g. Alfa Romeo" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Fuel Type</label>
+          <select class="form-select" [(ngModel)]="fuelFilter" (change)="filterCars()">
+            <option value="">All Fuel Types</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Electric">Electric</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Max Price ($)</label>
+          <input type="number" class="form-control" [(ngModel)]="maxPrice" (input)="filterCars()" placeholder="Any Price" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="text-center py-5">
+      <div class="spinner-border text-danger" role="status"></div>
+      <p class="mt-2 text-muted">Loading inventory from backend...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Car Grid -->
+    <div class="dishes-container" *ngIf="!isLoading && !errorMessage">
+      <div class="dish" *ngFor="let car of filteredCars">
+<div class="car-img-wrapper">
+  <img 
+    [src]="getCarImage(car)" 
+    alt="{{ car.brand }} {{ car.model }}"
+  />
+</div>
+        <h5>{{ car.brand }} {{ car.model }} ({{ car.year }})</h5>
+        <p class="text-danger fw-bold fs-5 mb-0">${{ car.price | number }}</p>
+        
+        <p class="small text-muted mb-0">
+          {{ car.fuelType }} | {{ car.transmission }} | {{ car.color }}<br>
+          Mileage: {{ car.mileage | number }} mi
+        </p>
+
+        <span class="badge" [ngClass]="car.isAvailable ? 'bg-success' : 'bg-secondary'">
+          {{ car.isAvailable ? 'Available' : 'Reserved' }}
+        </span>
+
+        <button 
+          [disabled]="!car.isAvailable"
+          (click)="addToCart(car, $event.currentTarget)">
+          {{ car.isAvailable ? 'Add to Cart' : 'Sold Out' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && !errorMessage && filteredCars.length === 0" class="empty-message">
+      <p>No vehicles found matching your criteria.</p>
+    </div>
+  </div>
+</div>
